@@ -13,8 +13,10 @@ const App = ({token}) => {
 
   const [allCards, setCards] = useState([]);
 	useEffect(()=> {
-		axios.post('http://localhost:5000/getAllCards', {'username': token.access_token.user.name})
+    console.log("zefgrbt")
+		axios.post('http://localhost:5000/getAllCards', {'username': 'John'})
         .then(res => {
+          console.log('res', res.data)
           setCards(res.data);
         })
         .catch(err => {

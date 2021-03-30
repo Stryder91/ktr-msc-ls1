@@ -40,8 +40,8 @@ const AddBusinessCard = ({loggedUser}) => {
     return(
         <div className="d-flex">
             <div className="d-flex justify-content-center m-auto text-center">
-            <Row>
-                <Col md="12">
+            <Row className=" my-5">
+                <Col md="8 m-auto">
                     <h1>I am adding a new business card</h1>
                     {/**Mapping fields is more scalable -> We retrive each field from fields 
                      * We are are using [field.placeholder] to render dynamically the key of the card object
@@ -58,7 +58,7 @@ const AddBusinessCard = ({loggedUser}) => {
                     : "Error"}
                     {/*We sould display a component instead of "Error" -> to continue*/}
                     <Row className="my-5"> 
-                        <Button className="btn-fill m-auto" onClick={AddCard} color="primary" type="submit"> Create an account </Button>
+                        <Button className="btn-fill m-auto" onClick={AddCard} color="success" type="submit"> Add a business card </Button>
                     </Row>
                     <Link to="/">Return to Business Cards menu</Link>
                 </Col>

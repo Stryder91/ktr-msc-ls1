@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import axios from 'axios';
 
 import { Col, Row, FormGroup, Input, Button } from 'reactstrap';
 
 // We should check the required field name from both front-end and back-end (for security)
-const Login = ({set_Token}) => {
+const Login = ({set_Token, tokenFromStore}) => {
 
     const [cred, setCred] = useState({name: '', password: '',});
 
@@ -24,6 +24,9 @@ const Login = ({set_Token}) => {
         .catch(err => {
           console.log("Error login", err);
         });
+    }
+    if (tokenFromStore) {
+        return <Redirect push to="/app" />;
     }
     return(
         <div className="d-flex h100 amethyst whiteColor">
