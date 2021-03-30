@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { Col, Row, FormGroup, Input, Button } from 'reactstrap';
 
-const Register = () => {
+const Login = () => {
 
     const [cred, setCred] = useState({email: '', name:'' , password: '', company: '', telephone:''});
 
-    const Register = () => {
+    const Login = () => {
         axios.post('http://localhost:5000/register', cred)
         .then(res => {
             console.log(res)
@@ -23,19 +23,19 @@ const Register = () => {
                 <Col className="m-auto" md="12">
                     <h1>Login</h1>
                     <FormGroup>
-                        <label>Email adress</label>
+                        <label>Username</label>
                         <Input
-                            placeholder="Email for login"
+                            placeholder="Username for login"
                             type="text"
-                            onChange={e => setCred({...cred, email: e.target.value})}
+                            onChange={e => setCred({...cred, name: e.target.value})}
                         />
                     </FormGroup>
                     <FormGroup>
-                        <label>Name</label>
+                        <label>Email</label>
                         <Input
-                            placeholder="Your name"
+                            placeholder="Your email address"
                             type="text"
-                            onChange={e => setCred({...cred, name: e.target.value})}
+                            onChange={e => setCred({...cred, email: e.target.value})}
                         />
                     </FormGroup>
                     <FormGroup >
@@ -63,9 +63,9 @@ const Register = () => {
                         />
                     </FormGroup>
                     <Row className="my-5"> 
-                        <Button className="btn-fill m-auto" onClick={Register} color="primary" type="submit"> Create an account </Button>
+                        <Button className="btn-fill m-auto" onClick={Login} color="primary" type="submit"> Create an account </Button>
                     </Row>
-                    <Link to="/login">Already have an account ? Sign in.</Link>
+                    <Link to="/signup">No account yet ? Sign up!</Link>
                 </Col>
             </Row>
             </div>
@@ -74,4 +74,4 @@ const Register = () => {
     );
 }
 
-export default Register;
+export default Login;

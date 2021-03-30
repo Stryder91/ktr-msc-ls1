@@ -23,19 +23,19 @@ const Register = () => {
                 <Col className="mt-4" md="12">
                     <h1>Sign Up</h1>
                     <FormGroup>
-                        <label>Email adress</label>
-                        <Input
-                            placeholder="Email for login"
-                            type="text"
-                            onChange={e => setCred({...cred, email: e.target.value})}
-                        />
-                    </FormGroup>
-                    <FormGroup>
                         <label>Name</label>
                         <Input
                             placeholder="Your name"
                             type="text"
                             onChange={e => setCred({...cred, name: e.target.value})}
+                        />
+                    </FormGroup>
+                    <FormGroup>
+                        <label>Email adress</label>
+                        <Input
+                            placeholder="Email for login"
+                            type="text"
+                            onChange={e => setCred({...cred, email: e.target.value})}
                         />
                     </FormGroup>
                     <FormGroup >
