@@ -6,6 +6,7 @@ import { Col, Row, FormGroup, Input, Button } from 'reactstrap';
 
 const AddBusinessCard = ({loggedUser}) => {
     // We need to implement the mandatory/optional statement for each field
+
     const businessCardFields = [
         {
             name: 'email', 
@@ -24,8 +25,7 @@ const AddBusinessCard = ({loggedUser}) => {
             placeholder: 'the telephone'
         },
     ];
-    const [card, setCard] = useState({email: '', name:'', company: '', telephone:'', user:loggedUser.user.email });
-
+    const [card, setCard] = useState({email: '', name:'', company: '', telephone:'', user:loggedUser.user.name });
     // We are adding a new business card from someone else
     // But we flag our own name on it to recognize whom this card belongs to.
     const AddCard = () => {
@@ -52,7 +52,7 @@ const AddBusinessCard = ({loggedUser}) => {
                         <Input
                             placeholder={field.placeholder}
                             type="text"
-                            onChange={e => setCard({...card, [field.placeholder]: e.target.value})}
+                            onChange={e => setCard({...card, [field.name]: e.target.value})}
                         />
                     </FormGroup>)
                     : "Error"}
