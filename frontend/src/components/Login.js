@@ -39,30 +39,6 @@ const Login = ({set_Token}) => {
                             onChange={e => setCred({...cred, name: e.target.value})}
                         />
                     </FormGroup>
-                    <FormGroup>
-                        <label>Email</label>
-                        <Input
-                            placeholder="Your email address"
-                            type="text"
-                            onChange={e => setCred({...cred, email: e.target.value})}
-                        />
-                    </FormGroup>
-                    <FormGroup >
-                        <label>Company Name</label>
-                        <Input
-                            placeholder="Your company"
-                            type="text"
-                            onChange={e => setCred({...cred, company: e.target.value})}
-                        />
-                    </FormGroup>
-                    <FormGroup >
-                        <label>Telephone number</label>
-                        <Input
-                            placeholder="Your Telephone"
-                            type="text"
-                            onChange={e => setCred({...cred, telephone: e.target.value})}
-                        />
-                    </FormGroup>
                     <FormGroup className="mt-2">
                         <label>Password</label>
                         <Input
@@ -72,7 +48,7 @@ const Login = ({set_Token}) => {
                         />
                     </FormGroup>
                     <Row className="my-5"> 
-                        <Button className="btn-fill m-auto" onClick={Login} color="primary" type="submit"> Create an account </Button>
+                        <Button className="btn-fill m-auto" onClick={Login} color="success" type="submit"> Login </Button>
                     </Row>
                     <Link to="/signup">No account yet ? Sign up!</Link>
                 </Col>

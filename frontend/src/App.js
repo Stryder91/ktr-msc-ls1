@@ -20,7 +20,7 @@ const App = ({token}) => {
         .catch(err => {
 			console.log("Error getting all cards", err)
         });
-	}, [])
+	},[])
 
   if (!token) {
 		return <Redirect push to ="login" />
