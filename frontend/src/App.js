@@ -3,8 +3,15 @@ import React from 'react';
 import './App.css';
 import MyCard from './components/BusinessCard';
 import {connect} from 'react-redux';
+import { Redirect } from 'react-router';
 
 const App = ({token}) => {
+
+  if (!token) {
+		return <Redirect push to ="login" />
+	}
+
+
   return (
     <div className="App">
       <MyCard user={token.user}/>
