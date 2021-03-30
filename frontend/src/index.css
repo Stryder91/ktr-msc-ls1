@@ -9,5 +9,26 @@ body {
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  monospace;
 }
+
+.App {
+  margin: 0 auto;
+  text-align: center;
+  background-color: aquamarine;
+  min-height: 100vh;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.h100 {
+  min-height: 100vh;
+}
+
+.amethyst {
+  background-color: #8e44ad;
+}
+.whiteColor {
+  color: white;
+}
+
