@@ -16,11 +16,20 @@ client = MongoClient(os.getenv("DATABASE_URL"))
 # Global variables to store our database and collections in db
 db = client['businessDB']
 c_Users = db['users']
+c_Cards = db['cards']
 
 # If needed to check backend
 @app.route('/')
 def hello_world():
     return 'Hello from backend python'
+
+@app.route('/addBusinessCard', methods=['POST'])
+def addStock():
+    card_form = request.get_json()
+    newCard = {**card_form}
+    c_Cards.insert_one(newCard)
+    return (newCard)
+
 
 # Registering allow us to create our own business card
 @app.route('/register', methods=['POST'])

@@ -28,12 +28,12 @@ const AddBusinessCard = ({loggedUser}) => {
     // We are adding a new business card from someone else
     // But we flag our own name on it to recognize whom this card belongs to.
     const AddItem = () => {
-        axios.post('http://localhost:5000/addItem', item)
+        axios.post('http://localhost:5000/addBusinessCard', item)
         .then(res => {
             console.log(res)
         })
         .catch(err => {
-          console.log("Error adding item : ", err)
+          console.log("Error adding card : ", err)
         });
     }
     return(
