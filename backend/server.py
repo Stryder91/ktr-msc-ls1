@@ -14,13 +14,11 @@ load_dotenv()
 
 client = MongoClient(os.getenv("DATABASE_URL"))
 db = client['businessDB']
-collection = db['test-collection']
+c_Users = db['users']
 
 @app.route('/')
 def hello_world():
-    all = collection.find()
-    print(all)
-    return 'Hello, World!'
+    return 'Hello from backend python'
 
 if __name__ == "__main__":        
     app.run()   
