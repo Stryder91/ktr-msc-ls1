@@ -13,12 +13,38 @@ app = Flask(__name__)
 load_dotenv()
 
 client = MongoClient(os.getenv("DATABASE_URL"))
+# Global variables to store our database and collections in db
 db = client['businessDB']
 c_Users = db['users']
 
+# If needed to check backend
 @app.route('/')
 def hello_world():
     return 'Hello from backend python'
+
+
+@app.route('/register', methods=['POST'])
+def register():
+    form_submitted = request.get_json()
+
+    # Only name and password are required
+    if "name" in form_submitted and "password" in form_submitted:
+        myUser = c_Users.find_one({"name": form_submitted['name'] })
+        if myUser != None:
+            return ("This username is already taken")
+        else:
+            # hashing passwd with bytes and salt to avoir rainbow table attacks
+            hashed = bcrypt.hashpw(bytes(form_submitted["password"], encoding="utf-8"), bcrypt.gensalt())
+            # We overload our dict form with the new hashed password
+            userToInsert = { **form_submitted,
+                "password" : hashed
+            }
+            # Given inserted_id return an _id
+            c_Users.insert_one(userToInsert).inserted_id
+            return "OK"
+    else:
+        print("Username or password are missing")
+        # Need to implement an Error method
 
 if __name__ == "__main__":        
     app.run()   
