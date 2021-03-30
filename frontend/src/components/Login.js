@@ -5,21 +5,23 @@ import axios from 'axios';
 
 import { Col, Row, FormGroup, Input, Button } from 'reactstrap';
 
+// We should check the required field name from both front-end and back-end (for security)
 const Login = ({set_Token}) => {
 
-    const [cred, setCred] = useState({email: '', name:'' , password: '', company: '', telephone:''});
+    const [cred, setCred] = useState({name: '', email:'' , password: '', company: '', telephone:''});
 
     const Login = () => {
         axios.post('http://localhost:5000/login', cred)
         .then(res => {
+            /* We always need to protect our code when retrieving infos from API calls*/
             if (res.data && 'access_token' in res.data) {
                 set_Token({'token': res.data.access_token, 'user': res.data.username});
             } else {
-                console.log("No access TOKEN!")
+                console.log("No access TOKEN!");
             }
         })
         .catch(err => {
-          console.log("Error login", err)
+          console.log("Error login", err);
         });
     }
     return(
@@ -31,6 +33,7 @@ const Login = ({set_Token}) => {
                     <FormGroup>
                         <label>Username</label>
                         <Input
+                            required
                             placeholder="Username for login"
                             type="text"
                             onChange={e => setCred({...cred, name: e.target.value})}

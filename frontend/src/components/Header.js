@@ -18,7 +18,7 @@ const MyHeader = () => {
   const Logout = () => {
     // We are removing token from localStorage + redux Store
     localStorage.removeItem('state');
-    set_Token('delete_token')
+    set_Token('delete_token');
   }
 
   return (

@@ -10,10 +10,10 @@ const Register = () => {
     const Register = () => {
         axios.post('http://localhost:5000/register', cred)
         .then(res => {
-            console.log(res)
+            console.log(res);
         })
         .catch(err => {
-          console.log("Error login", err)
+          console.log("Error login", err);
         });
     }
     return(
