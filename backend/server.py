@@ -46,5 +46,36 @@ def register():
         print("Username or password are missing")
         # Need to implement an Error method
 
+@app.route('/login', methods=['POST'])
+def login():
+    form_login = request.get_json()
+    if "name" in form_login and "password" in form_login:
+        user = c_Users.find_one({"name": form_login["name"]})
+    
+        # If a user with the match name exists in db
+        if user:        
+            # Password in bytes to hash
+            password = bytes(form_login["password"], encoding="utf-8")
+
+            # Generating salt to avoir rainbow table attacks
+            hashed = bcrypt.hashpw(password, bcrypt.gensalt())
+
+            passwordInDb = user["password"]
+
+            # Check if password matches the hashed password
+            if bcrypt.checkpw(password, passwordInDb):
+
+                return("Password match")
+            else:
+                # Need to implement a proper Error
+                return("Password didn't match")
+        else :
+            # Need to implement a proper Error
+            return("User not found")
+    else:
+        # Need to implement a proper Error
+        return("Email or password not existing or password length < 5")
+    return jsonify(form_login)
+
 if __name__ == "__main__":        
     app.run()   
