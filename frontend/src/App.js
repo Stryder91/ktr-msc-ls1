@@ -1,7 +1,9 @@
 
+import React from 'react';
 import './App.css';
+import {connect} from 'react-redux';
 
-const App = () => {
+const App = ({token}) => {
   return (
     <div className="App">
      Hello
@@ -9,4 +11,10 @@ const App = () => {
   );
 }
 
-export default App;
+// to GET from the store
+const getProps = state => {
+  return {
+    token  : state.access_token
+  }
+}
+export default connect(getProps, null)(App);
