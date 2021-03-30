@@ -30,6 +30,13 @@ def addStock():
     c_Cards.insert_one(newCard)
     return (newCard)
 
+# We retrieve all cards from 'cards' collection where 'user' = our own name (logged user name)
+@app.route('/getAllCards', methods=['POST'])
+def getStocks():
+    loggedUser = request.get_json()
+    all = c_Cards.find({"user": loggedUser['username']})
+    return jsonify(list(all))
+
 
 # Registering allow us to create our own business card
 @app.route('/register', methods=['POST'])
