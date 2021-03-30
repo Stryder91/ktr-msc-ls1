@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify, request
 from flask_cors import CORS
 from dotenv import load_dotenv
 from pymongo import MongoClient
@@ -9,12 +9,14 @@ from pymongo import MongoClient
 
 app = Flask(__name__)
 
+CORS(app, resources={r'/*': {'origins': '*'}})
+
 # Package allowing us to use .env 
 load_dotenv()
 
 client = MongoClient(os.getenv("DATABASE_URL"))
 # Global variables to store our database and collections in db
-db = client['businessDB']
+db = client['test']
 c_Users = db['users']
 c_Cards = db['cards']
 
@@ -68,6 +70,7 @@ def login():
     form_login = request.get_json()
     if "name" in form_login and "password" in form_login:
         user = c_Users.find_one({"name": form_login["name"]})
+        print("coucou")
     
         # If a user with the match name exists in db
         if user:        
