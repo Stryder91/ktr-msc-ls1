@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import {connect} from 'react-redux';
 import {
   Collapse,
   Navbar,
@@ -10,7 +11,7 @@ import {
   NavbarText
 } from 'reactstrap';
 
-const MyHeader = () => {
+const MyHeader = ({set_Token}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
