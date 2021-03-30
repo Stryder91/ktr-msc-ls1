@@ -15,6 +15,12 @@ const MyHeader = () => {
 
   const toggle = () => setIsOpen(!isOpen);
 
+  const Logout = () => {
+    // We are removing token from localStorage + redux Store
+    localStorage.removeItem('state');
+    set_Token('delete_token')
+  }
+
   return (
     <div>
       <Navbar color="light" light expand="md">
@@ -29,11 +35,18 @@ const MyHeader = () => {
               <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
             </NavItem>
           </Nav>
-          <NavbarText >Log Out</NavbarText>
+          <NavbarText onClick={Logout}>Log Out</NavbarText>
         </Collapse>
       </Navbar>
     </div>
   );
 }
 
-export default MyHeader
+const setProps = dispatch => {
+    return {
+      set_Token: (payload) => {
+        dispatch({type: "SET_TOKEN", payload });
+      },
+    }
+  };  
+  export default connect(null, setProps)(MyHeader);
