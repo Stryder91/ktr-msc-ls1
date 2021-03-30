@@ -22,7 +22,7 @@ c_Users = db['users']
 def hello_world():
     return 'Hello from backend python'
 
-
+# Registering allow us to create our own business card
 @app.route('/register', methods=['POST'])
 def register():
     form_submitted = request.get_json()
@@ -46,6 +46,7 @@ def register():
         print("Username or password are missing")
         # Need to implement an Error method
 
+# We need to login to access our business cards and add new business cards
 @app.route('/login', methods=['POST'])
 def login():
     form_login = request.get_json()
@@ -57,15 +58,26 @@ def login():
             # Password in bytes to hash
             password = bytes(form_login["password"], encoding="utf-8")
 
-            # Generating salt to avoir rainbow table attacks
+            # Generating salt to avoid rainbow table attacks
             hashed = bcrypt.hashpw(password, bcrypt.gensalt())
 
             passwordInDb = user["password"]
 
             # Check if password matches the hashed password
             if bcrypt.checkpw(password, passwordInDb):
-
-                return("Password match")
+                # We issue an access token and a refresh token
+                access_token = create_access_token(identity=form_login['email'])
+                refresh_token = create_refresh_token(identity=form_login['email'])
+                return jsonify({
+                    'username': { 
+                        'name': user['name'],
+                        'email': user['email'],
+                        'company' : user['company'],
+                        'telephone' : user['telephone']
+                    },
+                    'access_token': access_token,
+                    'refresh_token': refresh_token,
+                })
             else:
                 # Need to implement a proper Error
                 return("Password didn't match")
@@ -73,8 +85,8 @@ def login():
             # Need to implement a proper Error
             return("User not found")
     else:
-        # Need to implement a proper Error
-        return("Email or password not existing or password length < 5")
+        # Need to implement a proper Error and a password length minimum ?
+        return("Email or password not existing ")
     return jsonify(form_login)
 
 if __name__ == "__main__":        
