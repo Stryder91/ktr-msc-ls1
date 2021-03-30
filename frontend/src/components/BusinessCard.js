@@ -6,7 +6,6 @@ import {
 
 /** Simple UI Card thay displays all informations needed about one business card */
 const MyCard = ({user}) => {
-console.log("USER", user)
   return (
     <div className="my-1">
       <Card className="col-lg-4 m-auto">

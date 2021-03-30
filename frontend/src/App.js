@@ -15,12 +15,12 @@ const App = ({token}) => {
 
 	useEffect(()=> {
 		axios.post('http://localhost:5000/getAllCards', {'username': 'John'})
-        .then(res => {
-          setCards(res.data);
-        })
-        .catch(err => {
-			console.log("Error getting all cards", err)
-        });
+      .then(res => {
+        setCards(res.data);
+      })
+      .catch(err => {
+    console.log("Error getting all cards", err)
+      });
 	},[])
 
   if (!token) {
