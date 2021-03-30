@@ -1,12 +1,13 @@
 
 import React from 'react';
 import './App.css';
+import MyCard from './components/BusinessCard';
 import {connect} from 'react-redux';
 
 const App = ({token}) => {
   return (
     <div className="App">
-     Hello
+      <MyCard user={token.user}/>
     </div>
   );
 }
