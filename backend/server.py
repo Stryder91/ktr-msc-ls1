@@ -36,12 +36,13 @@ c_Cards = db['cards']
 def hello_world():
     return 'Hello from backend python'
 
+# Adding a new business card with 'user' field as logged user.name
 @app.route('/addBusinessCard', methods=['POST'])
 def addCard():
     card_form = request.get_json()
     newCard = {**card_form}
     c_Cards.insert_one(newCard)
-    return (newCard)
+    return newCard
 
 # We retrieve all cards from 'cards' collection where 'user' = our own name (logged user name)
 @app.route('/getAllCards', methods=['POST'])

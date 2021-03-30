@@ -16,9 +16,8 @@ evenings.
 2. Create a private repository named ktr-msc-ls1
 3. Give the rights to this deposit to the login you were given when you made contact
 
-> Process
-
-Creation of the venv environment for back-end Python.
+**Implementation by Lionel:**
+-> The github was publicly created as mentionned by the instructor via email.
 
 ## Step 2
 
@@ -31,12 +30,32 @@ form:
 
 Bonus : Make sure that this data is persistent.
 
+**Implementation by Lionel:**
+-> In /signup front-end point we can create a new profile with the those fields : name, password, email, company, telephone.
+The data is **persistent** via the back-end which store data into a mongodb database in the Cloud (Atlas Mongo).
+In order to access this database, a .env file is created at the root of back-end directory with URL_DATABASE env variable
+(.env is of course not pushed on the repo)
+
+To go further and beyond :
+We could implement dynamic check validation for the fields in further development.
+
 ## Step 3
 Create a password protection system for this interface.
 + BONUS 2 - MULTI-USERS 
 Create one profile per user.
 + BONUS 3 - USER SWITCH 
 Allow your users to log out.
+
+**Implementation by Lionel:**
+-> We can create as multiple profile as we want and we use the 'name' field as unique field to 
+identify a user: the users are stored into a 'users' collection in mongodb.
+We can login / logout via an authentication process which encrypt our password into the database (with bcrypt and salt is used in order to 
+prevent rainbow table attacks) from where the back-end send back to the client a JWT (JSON Web Token).
+The JWT allows the user to maintain session, which can be destroyed by logout in the header top corner right.
+
+To go further :
+Implement some protected endpoint in the back-end which authenticate the access_token, which i didn't implemented yet.
+
 
 ## Step 4
 
@@ -49,3 +68,11 @@ following fields:
 
 Allow two users of your application on two different devices to automatically exchange their profile infor-
 mation and add it to their business card “library”.
+
+**Implementation by Lionel:**
+-> We can add a business card in the '/add' endpoint with the same fields as a profile, 
+but we are adding our username into that card to recognize that this card belong to us (logged user).
+I didn't implement the allowance of users to share their business cards due to a lack of time.
+In order to do this, i would implement some "joints" while retrieving data from 'cards' collection.
+
+Thank You for the Test
