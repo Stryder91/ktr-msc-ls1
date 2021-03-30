@@ -4,6 +4,7 @@ import {
   CardTitle, CardSubtitle
 } from 'reactstrap';
 
+/** Simple UI Card thay displays all informations needed about one business card */
 const MyCard = ({user}) => {
   return (
     <div className="my-1">
