@@ -10,7 +10,7 @@ const Register = () => {
 	const Register = () => {
 		axios.post('http://localhost:5000/register', cred)
 		.then(res => {
-				console.log(res);
+				console.log("Register OK - ",res);
 		})
 		.catch(err => {
 			console.log("Error login", err);

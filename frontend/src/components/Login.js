@@ -13,7 +13,6 @@ const Login = ({set_Token, tokenFromStore}) => {
     const Login = () => {
         axios.post('http://localhost:5000/login', cred)
         .then(res => {
-            console.log('res', res)
             /* We always need to protect our code when retrieving infos from API calls*/
             if (res.data && 'access_token' in res.data) {
                 set_Token({'token': res.data.access_token, 'user': res.data.username});

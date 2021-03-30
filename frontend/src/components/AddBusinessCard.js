@@ -31,7 +31,7 @@ const AddBusinessCard = ({loggedUser}) => {
     const AddCard = () => {
         axios.post('http://localhost:5000/addBusinessCard', card)
         .then(res => {
-            console.log(res)
+            console.log("Add business card OK - ",res)
         })
         .catch(err => {
           console.log("Error adding card : ", err)
