@@ -16,6 +16,10 @@ evenings.
 2. Create a private repository named ktr-msc-ls1
 3. Give the rights to this deposit to the login you were given when you made contact
 
+> Process
+
+Creation of the venv environment for back-end Python.
+
 ## Step 2
 
 Create a “profile” interface allowing the user of your application to save his own information, in the following
